@@ -2,6 +2,8 @@ import './App.css';
 import {Routes,Route} from "react-router-dom";
 import Layout from './layouts/layout';
 import IndexPages from './components/IndexPages';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -10,9 +12,9 @@ function App() {
 
         <Route index element={<IndexPages/> }/>
 
-        <Route path={'/Login'} element={ <div>log</div>}/>
+        <Route path={'/Login'} element={ <Login/>}/>
 
-        <Route path={'/register'} element={ <div>register</div> }/>
+        <Route path={'/register'} element={ <Register/> }/>
 
       </Route>
     </Routes>
