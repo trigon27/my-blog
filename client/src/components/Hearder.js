@@ -31,7 +31,7 @@ const Header = () => {
     <nav>
       {userName&& (
         <>
-        <Link to='/create'>Create New Post</Link>
+        <Link to='/create'>Create Post</Link>
         <a href=" "onClick={logout}>Log Out</a>
         </>
       )}

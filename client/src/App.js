@@ -5,6 +5,7 @@ import IndexPages from './components/IndexPages';
 import Login from './components/Login';
 import Register from './components/Register';
 import { UserContextProvider } from './components/UserContext';
+import CreatePost from './components/CreatePost';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         <Route path={'/Login'} element={ <Login/>}/>
 
         <Route path={'/register'} element={ <Register/> }/>
+
+        <Route path={'/create'} element={ <CreatePost/>}/>
+
 
       </Route>
     </Routes>
