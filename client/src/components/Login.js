@@ -1,35 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import React from 'react'
 
 const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
-  const {setUserInfo} =useContext(UserContext);
-  const navigate = useNavigate();
-
-  async function login(ev) {
-    ev.preventDefault();
-
-    const response = await fetch('http://localhost:4000/login', {
-      method: 'POST',
-      body: JSON.stringify({ userName, password }),
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    });
-
-    if (response.ok) {
-      // Redirect to home page
-      response.json().then(UserInfo=>{
-        setUserInfo(UserInfo)
-        navigate('/');
-      })
-     
-    } else {
-      alert('Wrong credentials');
-    }
-  }
-
   return (
     <div>
       <form className="login" onSubmit={login}>
