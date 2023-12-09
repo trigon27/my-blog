@@ -1,13 +1,46 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { UserContext } from './UserContext'
 
 const Header = () => {
+ const {setUserInfo,UserInfo}=useContext(UserContext)
+  useEffect(()=>{
+   fetch('http://localhost:4000/profile',{
+      credentials:'include',
+    }).then(response =>{
+        response.json().then(userInfo=>{
+         setUserInfo(userInfo)
+
+        })
+    })
+  })// to add useEffect dependecy[]
+
+  function logout(){
+    fetch('http://localhost:4000/logout',{
+      credentials:'include',
+      method:'POST',
+
+    });
+    setUserInfo(null)
+
+  }
+  const userName=UserInfo?.userName;
   return (
     <header>
-    <Link to='/' className="logo">my blog</Link>
+    <Link to='/' className="logo">my Blog</Link>
     <nav>
-      <Link to="/login">Log in </Link>
+      {userName&& (
+        <>
+        <Link to='/create'>Create New Post</Link>
+        <a href=" "onClick={logout}>Log Out</a>
+        </>
+      )}
+      {!userName && (
+        <>
+          <Link to="/login">Log in </Link>
       <Link to="/register">Register</Link>
+        </>
+      )}
     </nav>
   </header>
   )

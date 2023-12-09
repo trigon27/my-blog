@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const {setUserInfo} =useContext(UserContext);
   const navigate = useNavigate();
 
   async function login(ev) {
@@ -18,7 +20,11 @@ const Login = () => {
 
     if (response.ok) {
       // Redirect to home page
-      navigate('/');
+      response.json().then(UserInfo=>{
+        setUserInfo(UserInfo)
+        navigate('/');
+      })
+     
     } else {
       alert('Wrong credentials');
     }

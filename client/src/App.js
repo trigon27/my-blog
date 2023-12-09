@@ -4,10 +4,12 @@ import Layout from './layouts/layout';
 import IndexPages from './components/IndexPages';
 import Login from './components/Login';
 import Register from './components/Register';
+import { UserContextProvider } from './components/UserContext';
 
 function App() {
   return (
-    <Routes>
+    <UserContextProvider>
+         <Routes>
       <Route path={'/'} element={<Layout/>}>
 
         <Route index element={<IndexPages/> }/>
@@ -18,6 +20,8 @@ function App() {
 
       </Route>
     </Routes>
+    </UserContextProvider>
+   
   
   
   );
