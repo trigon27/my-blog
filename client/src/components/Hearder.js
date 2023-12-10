@@ -8,12 +8,13 @@ const Header = () => {
    fetch('http://localhost:4000/profile',{
       credentials:'include',
     }).then(response =>{
+       // eslint-disable-next-line
         response.json().then(userInfo=>{
          setUserInfo(userInfo)
 
         })
     })
-  })// to add useEffect dependecy[]
+  },[])
 
   function logout(){
     fetch('http://localhost:4000/logout',{

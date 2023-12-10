@@ -83,7 +83,10 @@ button{
   padding: 7PX 5PX;
   margin-top: 5px;
 }
-form h1{
+form.login h1, form.register h1{
  text-align: center;
  margin: 10px 0px;
+}
+.createPost .create-btn{
+  margin-top:20px ;
 }

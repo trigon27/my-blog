@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
+const Post=require('./models/Post')
 const cors = require('cors');
 const Users=require('./models/Users');
 const jwt=require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const  mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+const uploadMiddleware=multer({dest:'uploads/'})
 const port = 4000;
 const secret='lsjfahsuihejfhh3uffvh';
 
@@ -79,6 +84,26 @@ app.get('/profile',(req,res)=>{
 //log out
 app.post('/logout',(req,res)=>{
   res.cookie('token','').json('ok');
+})
+
+//post blog
+app.post('/post',uploadMiddleware.single('file'),async(req,res)=>{
+ const {originalname,path}=req.file;
+ const parts=originalname.split('.')
+ const ext = parts[parts.length -1];
+ const newPath=path+'.'+ext
+ fs.renameSync(path,newPath)
+
+ const {title,summary,content}=req.body
+ const PostDoc=await Post.create({
+  title,
+  summary,
+  content,
+  cover:newPath,
+ })
+  res.json(PostDoc);
+
+
 })
 
 app.listen(port, () => {
