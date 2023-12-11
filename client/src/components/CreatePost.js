@@ -55,7 +55,8 @@ async function createNewPost(ev)
    ev.preventDefault();
    const response =await fetch('http://localhost:4000/post',{
     method:'POST',
-    body:Data
+    body:Data,
+    credentials:'include',
 
   });
   if(response.ok)

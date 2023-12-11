@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Posts from './Posts'
 
+
 const IndexPages = () => {
+  const [posts,setPosts]=useState([])
+  useEffect(()=>{
+    fetch('http://localhost:4000/post').then(reponse=>{
+      reponse.json().then(post=>{
+        setPosts(post);
+      })
+    })
+  },[])
   return (
     <div>
-      <Posts/>
-      <Posts/>
-      <Posts/>
+     {posts.length>0 && posts.map(post=>(
+      <Posts {...post}/>
+     ))}
     </div>
   )
 }
