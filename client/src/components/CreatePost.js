@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router';
         [{ 'align': [] }],
   
         ['clean'],                                       // remove formatting button
-        ['link', 'image', 'video'],  
+        ['link',  'video'],  
       ],
     };
   
@@ -30,7 +30,7 @@ import { useNavigate } from 'react-router';
       'header', 'font', 'size',
       'bold', 'italic', 'underline', 'strike', 'blockquote',
       'list', 'bullet', 'indent',
-      'link', 'image', 'video',
+      'link',  'video',
       'color', 'background',
     ];
 
