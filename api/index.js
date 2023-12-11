@@ -110,8 +110,6 @@ app.post('/post',uploadMiddleware.single('file'),async(req,res)=>{
   res.json(PostDoc);
   });
 
- 
-
 
 })
 
@@ -123,7 +121,12 @@ app.get('/post',async(req,res)=>{
   .limit(25))
 })
 
+app.get('/post/:id',async(req,res)=>{
+  const {id}=req.params;
+  const postDoc=await Post.findById(id).populate('author',['userName']);
+  res.json(postDoc)
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-//mongodb+srv://shaikhpc0786:trigon27@cluster0.gkdbxsk.mongodb.net/?retryWrites=true&w=majority

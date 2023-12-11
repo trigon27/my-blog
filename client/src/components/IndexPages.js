@@ -13,9 +13,11 @@ const IndexPages = () => {
   },[])
   return (
     <div>
-     {posts.length>0 && posts.map(post=>(
-      <Posts {...post}/>
-     ))}
+      {posts.length > 0 ? (
+        posts.map(post => <Posts key={post._id} {...post} />)
+      ) : (
+        <h4 className='noBlogs'>No Blogs to show</h4>
+      )}
     </div>
   )
 }

@@ -1,17 +1,22 @@
 import React from 'react'
 import { formatISO9075 } from 'date-fns';
+import {Link} from 'react-router-dom'
 
-const Posts = ({title,content,summary,createdAt,cover,author}) => {
+const Posts = ({title,content,summary,createdAt,cover,author,_id}) => {
   return (
     <div className="cart">
       <div className="cart_img">
+        <Link to={`/post/${_id}`}>
       <img src={'http://localhost:4000/' + cover} alt="image " />
+        </Link>
       </div>
      
       <div className="cart_text">
+        <Link to={`/post/${_id}`}>
       <h2>{title}</h2>
+        </Link>
       <p className="details"> 
-      <a href="" className="authur">{author.userName}</a>
+      <p href="" className="authur">{author.userName}</p>
       <time>{formatISO9075(new Date(createdAt))}</time>
       </p>
       <p className="summury">{summary}</p>

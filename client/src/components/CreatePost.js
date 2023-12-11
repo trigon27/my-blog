@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router';
         [{ 'align': [] }],
   
         ['clean'],                                       // remove formatting button
+        ['link', 'image', 'video'],  
       ],
     };
   
@@ -39,20 +40,22 @@ const CreatePost = () => {
     const [summary, setSummary] =useState('');
     const [file, setFile] =useState('');
     const navigate = useNavigate();
-    // const [redirect, setRedirect] =useState(false);
-    // const navigate = useNavigate
+
+
   
 async function createNewPost(ev)
 {
+  ev.preventDefault();
+  if (!title || !summary || !content || !file) {
+    alert('Please fill in all fields');
+    return;
+  }
   const Data = new FormData();
   Data.set('title',title);
   Data.set('summary',summary);
   Data.set('content',content);
   Data.set('file',file[0]);
-  
-  
-
-   ev.preventDefault();
+  try{
    const response =await fetch('http://localhost:4000/post',{
     method:'POST',
     body:Data,
@@ -62,8 +65,13 @@ async function createNewPost(ev)
   if(response.ok)
   {
     navigate('/');
+  }else {
+    // Handle other response status codes or show appropriate error message
+    alert('Error creating post. Please try again.');
   }
-  
+}catch(error){
+  alert('An error occurred. Please try again.');
+}
 
 }
 
@@ -75,14 +83,16 @@ async function createNewPost(ev)
          value={title}
          onChange={ev=>setTitle(ev.target.value)}
           />
-        <input type="summary" 
+        <textarea
         placeholder='Summary' 
         value={summary}
         onChange={ev=>setSummary(ev.target.value)}
         />
         <input type="file" 
+        className='create_file'
         onChange={ev=>setFile(ev.target.files)}
         />
+        
         <ReactQuill
         value={content}
         modules={modules}
