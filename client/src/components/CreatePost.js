@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router';
 
     // Specify the modules and formats
     const modules = {
@@ -37,6 +38,7 @@ const CreatePost = () => {
     const [title, setTitle] =useState('');
     const [summary, setSummary] =useState('');
     const [file, setFile] =useState('');
+    const navigate = useNavigate();
     // const [redirect, setRedirect] =useState(false);
     // const navigate = useNavigate
   
@@ -56,7 +58,10 @@ async function createNewPost(ev)
     body:Data
 
   });
-  
+  if(response.ok)
+  {
+    navigate('/');
+  }
   
 
 }
