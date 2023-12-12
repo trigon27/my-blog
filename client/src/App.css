@@ -121,22 +121,39 @@ button{
   margin-top: 5px;
   cursor: pointer;
 }
+.UploadCover{
+  width: fit-content;
+  display: block;
+  background-color: #8f7777;
+  color:white;
+  border:none;
+  border-radius: 5px;
+  padding: 7PX 5PX;
+  margin-top: 5px;
+  cursor: pointer;
+  font-weight: 200;
+  margin-bottom: 25px;
+}
 svg{
   width: 18px;
   
 }
-.logout-link,.create-link{
+.logout-link,.create-link,.UploadCover{
   display:inline-flex;
-  gap: 2px;
+  gap: 5px;
   text-align: center;
 }
-
+.custom-quill{
+  /* height: 25vh; */
+  margin-bottom: 20px;
+}
 form.login h1, form.register h1{
  text-align: center;
  margin: 10px 0px;
 }
 .createPost .create-btn{
-  margin-top:20px ;
+ position: relative;
+ margin-top: 20px;
 }
 
 div.Post-Page div.image{
