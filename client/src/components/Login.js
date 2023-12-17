@@ -11,7 +11,7 @@ const Login = () => {
   async function login(ev) {
     ev.preventDefault();
 
-    const response = await fetch('https://mern-blog-backend-cfap.onrender.com/login', {
+    const response = await fetch('https://mern-blog-backend-t0qk.onrender.com/login', {
       method: 'POST',
       body: JSON.stringify({ userName, password }),
       headers: { 'Content-Type': 'application/json' },

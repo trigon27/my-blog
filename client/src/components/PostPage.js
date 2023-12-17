@@ -7,7 +7,7 @@ const PostPage = () => {
     const {id}= useParams();
     useEffect(()=>{
           
-        fetch(`https://mern-blog-backend-cfap.onrender.com/post/${id}`)
+        fetch(`https://mern-blog-backend-t0qk.onrender.com/post/${id}`)
         .then(response=>{
             response.json().then(postInfo=>{
                     setPostInfo(postInfo)
@@ -21,7 +21,7 @@ const PostPage = () => {
             <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
             <div className='author'>by {postInfo.author.userName}</div>
         <div className="image">
-      <img src={`https://mern-blog-backend-cfap.onrender.com/${postInfo.cover}`} alt="" />
+      <img src={`https://mern-blog-backend-t0qk.onrender.com/${postInfo.cover}`} alt="" />
         </div>
             <div className ="content" dangerouslySetInnerHTML={{__html:postInfo.content}}/>
       

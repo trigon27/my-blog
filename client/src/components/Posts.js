@@ -7,7 +7,7 @@ const Posts = ({title,content,summary,createdAt,cover,author,_id}) => {
     <div className="cart">
       <div className="cart_img">
         <Link to={`/post/${_id}`}>
-      <img src={'https://mern-blog-backend-cfap.onrender.com/' + cover} alt="image " />
+      <img src={'https://mern-blog-backend-t0qk.onrender.com/' + cover} alt="image " />
         </Link>
       </div>
      
