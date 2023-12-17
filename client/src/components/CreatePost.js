@@ -60,7 +60,7 @@ async function createNewPost(ev)
   Data.set('content',content);
   Data.set('file',file[0]);
   try{
-   const response =await fetch('http://localhost:4000/post',{
+   const response =await fetch('https://mern-blog-backend-cfap.onrender.com/post',{
     method:'POST',
     body:Data,
     credentials:'include',
