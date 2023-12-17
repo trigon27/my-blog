@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const DBconnection=require('./database/db.js')
 const path = require('path');
@@ -12,7 +13,7 @@ const logoutRoutes = require('./routes/logout.js');
 const postBlog = require('./routes/postBlog.js');
 const retrieveBlog = require('./routes/retrieveBlog.js');
 const singleBlog = require('./routes/singleBlog.js');
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json());
