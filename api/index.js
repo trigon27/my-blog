@@ -15,7 +15,7 @@ const retrieveBlog = require('./routes/retrieveBlog.js');
 const singleBlog = require('./routes/singleBlog.js');
 const port = process.env.PORT || 4000;
 
-app.use(cors({credentials:true,origin:process.env.origin}));
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

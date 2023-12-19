@@ -59,6 +59,23 @@ img{
 
   
 }
+@media  screen and (max-width:385px) {
+  header{
+    font-size: 0.6rem;
+    font-weight: 600;
+    align-items: center;
+  }
+
+  .create-link{
+    gap: 0px;
+    text-align:center;
+  
+  }
+  .logo{
+    font-size: medium;
+  }
+  
+}
 .cart .cart_text h2{
   margin: 0px;
   font-size: 1.2rem;
@@ -135,12 +152,12 @@ button{
   margin-bottom: 25px;
 }
 svg{
-  width: 18px;
+  width: 15px;
   
 }
 .logout-link,.create-link,.UploadCover{
   display:inline-flex;
-  gap: 5px;
+  gap: 3px;
   text-align: center;
 }
 .custom-quill{

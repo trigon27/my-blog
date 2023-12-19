@@ -1,34 +1,49 @@
 const express = require('express');
-const Users=require('../models/Users');
+const Users = require('../models/Users');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken');
-const secret='lsjfahsuihejfhh3uffvh';
-// const cookieParser = require('cookie-parser');
-const loginRoutes=express.Router();
-loginRoutes.post('/login',async(req,res)=>{
-    const {userName,password}=req.body;
-    const docData=await Users.findOne({userName});
-    if (!docData) {
-      return res.status(400).json("Username not found");
-    }
-   const passOK= bcrypt.compareSync(password,docData.password)
-    // res.json(passOK)
-    if(passOK){
-      //log in
-      jwt.sign({userName,id:docData._id},secret,{},(err,token)=>{
-        if(err) throw err;
-        else{
-          res.cookie('token',token).json({
-            id:docData._id,
-            userName,
-          });
-        }
-      })
-     
-    }
-    else{
-      res.status(400).json(" wrong crentiations")
-    }
-  })
+const jwt = require('jsonwebtoken');
 
-  module.exports=loginRoutes;
+const secret = 'lsjfahsuihejfhh3uffvh';
+const loginRoutes = express.Router();
+
+loginRoutes.post('/login', async (req, res) => {
+  try {
+    const { userName, password } = req.body;
+
+    // Validate input
+    if (!userName || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+    const docData = await Users.findOne({ userName });
+
+    if (!docData) {
+      return res.status(400).json({ error: 'Username not found' });
+    }
+
+    const passOK = bcrypt.compareSync(password, docData.password);
+
+    if (passOK) {
+      // Generate JWT token
+      const token = jwt.sign({ userName, id: docData._id }, secret, { expiresIn: '1h' });
+
+      // Set the token as a cookie (secure and HTTP-only flags can be added)
+      res.cookie('token', token);
+
+      // Respond with user information or a success message
+      res.json({
+        id: docData._id,
+        userName,
+        message: 'Login successful',
+      });
+    } else {
+      res.status(400).json({ error: 'Incorrect credentials' });
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+module.exports = loginRoutes;
+``
