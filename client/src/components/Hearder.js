@@ -6,7 +6,7 @@ const Header = () => {
   const navigate =useNavigate();
  const {setUserInfo,UserInfo}=useContext(UserContext)
   useEffect(()=>{
-   fetch('http://localhost:4000/profile',{
+   fetch('https://mern-blog-backend-0quv.onrender.com/profile',{
       credentials:'include',
     }).then(response =>{
        // eslint-disable-next-line
@@ -18,7 +18,7 @@ const Header = () => {
   },[])
 
   function logout(){
-    fetch('http://localhost:4000/logout',{
+    fetch('https://mern-blog-backend-0quv.onrender.com/logout',{
       credentials:'include',
       method:'POST',
 

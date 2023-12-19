@@ -5,7 +5,7 @@ import Posts from './Posts'
 const IndexPages = () => {
   const [posts,setPosts]=useState([])
   useEffect(()=>{
-    fetch('http://localhost:4000/post').then(reponse=>{
+    fetch('https://mern-blog-backend-0quv.onrender.com/post').then(reponse=>{
       reponse.json().then(post=>{
         setPosts(post);
       })
