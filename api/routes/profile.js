@@ -25,7 +25,6 @@ profileRoutes.get('/profile',(req,res)=>{
       // Token is valid, send user information
       res.json(info);
     })
-    // res.json(req.cookies)
 
   })
 

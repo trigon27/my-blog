@@ -6,8 +6,13 @@ const Header = () => {
   const navigate =useNavigate();
  const {setUserInfo,UserInfo}=useContext(UserContext)
   useEffect(()=>{
-   fetch('https://mern-blog-backend-0quv.onrender.com/profile',{
+    try{
+  const res=fetch('http://localhost:4000/profile',{
       credentials:'include',
+      headers:{
+        Accept:'appllication/json',
+        "Content-Type":"application/json"
+      }
     }).then(response =>{
        // eslint-disable-next-line
         response.json().then(userInfo=>{
@@ -15,10 +20,14 @@ const Header = () => {
 
         })
     })
+  }catch(err){
+      console.error('this is profile error :',err)
+  }
   },[])
 
-  function logout(){
-    fetch('https://mern-blog-backend-0quv.onrender.com/logout',{
+  function logout(ev){
+    ev.preventDefault();
+    fetch('http://localhost:4000/logout',{
       credentials:'include',
       method:'POST',
 

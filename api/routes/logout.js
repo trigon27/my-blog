@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 logoutRoutes.post('/logout', (req, res) => {
   // Clear the token cookie without attempting to verify it
-  res.clearCookie('token').json('ok');
+  res.cookie('token', '').json('ok')
 });
 
 module.exports = logoutRoutes;

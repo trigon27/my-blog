@@ -25,10 +25,13 @@ loginRoutes.post('/login', async (req, res) => {
 
     if (passOK) {
       // Generate JWT token
-      const token = jwt.sign({ userName, id: docData._id }, secret, { expiresIn: '1h' });
+      const token = jwt.sign({ userName, id: docData._id }, secret, {expiresIn: '30d' });
 
       // Set the token as a cookie (secure and HTTP-only flags can be added)
-      res.cookie('token', token);
+      res.cookie('token', token,{
+        httpOnly:true
+      });
+      // console.log(token)
 
       // Respond with user information or a success message
       res.json({
