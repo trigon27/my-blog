@@ -14,14 +14,13 @@ const postBlog = require('./routes/postBlog.js');
 const retrieveBlog = require('./routes/retrieveBlog.js');
 const singleBlog = require('./routes/singleBlog.js');
 const port = process.env.PORT || 4000;
-const frontendUrl=process.env.frontend;
+const frontUrl=process.env.frontend;
 
 app.use(cors({ credentials: true, origin:frontUrl}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const frontUrl=process.env.frontend;
 DBconnection();
 
 app.use('/',registerRoute);
